@@ -1,12 +1,12 @@
 public class Stage {
     private Fighter playerOne;
     private Fighter playerTwo;
-    private String arena;
+    private ArenaEnum arena;
 
-    public Stage(Fighter playerOne, Fighter playerTwo) {
+    public Stage(Fighter playerOne, Fighter playerTwo, ArenaEnum arena) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
-        this.arena = "City";
+        this.arena = arena;
     }
 
     public void presentation() {
@@ -17,6 +17,7 @@ public class Stage {
     }
 
     public void start() {
+        System.out.println("*************************************************************************");
         for (int x = 0; x < 10; x++) {
             System.out.println("Round: " + (x + 1));
             if (playerOne.getAgility().compareTo(playerTwo.getAgility()) < 0) {
@@ -38,10 +39,12 @@ public class Stage {
                 break;
             }
         }
+        System.out.println("*************************************************************************");
         this.winnerPresentation();
     }
 
     public void winnerPresentation() {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         if (playerOne.isAlive()) {
             System.out.println(playerOne.getName());
             playerOne.winnerCry();
@@ -49,6 +52,7 @@ public class Stage {
             System.out.println(playerTwo.getName());
             playerTwo.winnerCry();
         }
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     public Fighter getPlayerOne() {
@@ -65,5 +69,13 @@ public class Stage {
 
     public void setPlayerTwo(Fighter playerTwo) {
         this.playerTwo = playerTwo;
+    }
+
+    public Fighter getWinner() {
+        if (playerOne.isAlive()) {
+            return playerOne;
+        } else {
+            return playerTwo;
+        }
     }
 }

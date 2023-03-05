@@ -24,7 +24,9 @@ public class Fighter {
     }
 
     public void attack(Fighter target) {
-        target.receiveAttack(this.attack - target.getDefense());
+        if (isAlive()) {
+            target.receiveAttack(this.attack - target.getDefense());
+        }
     }
 
     public void receiveAttack(Long damage) {
@@ -50,6 +52,7 @@ public class Fighter {
     public String getName() {
         return name;
     }
+
     public Long getHealth() {
         return health;
     }
